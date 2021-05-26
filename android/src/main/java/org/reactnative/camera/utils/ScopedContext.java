@@ -4,6 +4,11 @@ import android.content.Context;
 
 import java.io.File;
 
+import android.content.ContextWrapper;
+
+import android.os.Environment;
+
+
 /**
  * Created by jgfidelis on 23/01/18.
  */
@@ -17,7 +22,8 @@ public class ScopedContext {
     }
 
     public void createCacheDirectory(Context context) {
-        cacheDirectory = new File(context.getCacheDir() + "/Camera/");
+        ContextWrapper cw = new ContextWrapper(context);
+        cacheDirectory = new File(cw.getExternalFilesDir(Environment.DIRECTORY_MOVIES), "Camera");
     }
 
     public File getCacheDirectory() {
